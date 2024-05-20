@@ -4,7 +4,7 @@ import TextInput from '../../atoms/Input/Input';
 import styles from './styles';
 import {useTranslation} from 'react-i18next';
 import Input from '../../atoms/Input/Input';
-import {PrimaryButton} from '../../atoms/PrimaryButton/Button';
+import {PrimaryButton} from '../../atoms/PrimaryButton/PrimaryButton';
 
 const Form: React.FC = () => {
   const {t} = useTranslation();
