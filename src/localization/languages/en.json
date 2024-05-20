@@ -1,0 +1,49 @@
+{
+  "appName": "Star Trader",
+  "Login":"Log In",
+  "emailPlaceHolder": "Email",
+  "passwordPlaceHolder":"Password",
+  "show":"Show",
+  "forgotPassword":"Forgot your password?",
+  "signUp":"Sign Up",
+  "name":"Name",
+  "acceptCondition":"I would like to receive your newsletter and other promotional information.",
+  
+
+
+  "emptyConformPass": "Confirm Password can not be empty",
+  "emptyPass": "Password can not be empty",
+  "emptyEmail": "Please enter email address",
+  "validEmail": "Please enter a valid email address",
+  "strongPass": "Password must be 8+ characters with an uppercase, number, and special character.",
+  "next": "Next",
+  "clear": "Clear",
+  "somethingwentwrong": "Something went wrong",
+  "matchPassword": "Confirm password is not matched",
+  "enterNewPassword": "Enter New Password",
+  "pleaseEnterNewPassword": "Please enter new password here",
+  "newPassword": "New Password",
+  "reEnterPassword": "Re-Enter Password",
+  "done": "Done",
+  "confirmPassword": "Confirm Password",
+  "sessionExpired": "Your Session Expired",
+  "invalide": "Authentication Failed, Invalid Email/Password",
+  "OnBoarding": "OnBoarding",
+  "skip": "Skip",
+  "login": "Login",
+  "emailAddress": "Email Address",
+  "password": "Password",
+  "home": "Home",
+  "updateDescription": "Your password has been updated\nsuccessfully.",
+  "changePasswordDescription": "Please enter your email address. So we'll send you link to get back into your account.",
+  "sendOtp": "Send OTP",
+  "otp": "Otp",
+  "enterOtp": "Enter OTP",
+  "otpDescription": "One-Time Password will be sent to your registered email",
+  "otpNumber": "Please enter Otp Number",
+  "verifyOtp": "Verify OTP",
+  "resend": "Resend OTP"
+
+
+
+}
