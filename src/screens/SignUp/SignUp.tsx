@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const SignUp = () => {
   const navigation = useNavigation();
+
   return (
     <SafeAreaView>
       <Text>SignUp</Text>

@@ -4,6 +4,7 @@ import TextInput from '../../atoms/Input/Input';
 import styles from './styles';
 import {useTranslation} from 'react-i18next';
 import Input from '../../atoms/Input/Input';
+import {PrimaryButton} from '../../atoms/PrimaryButton/Button';
 
 const Form: React.FC = () => {
   const {t} = useTranslation();
@@ -92,7 +93,8 @@ const Form: React.FC = () => {
         fieldError={passwordError}
         onFocus={() => setPasswordError('')}
       />
-      <Button title="Submit" onPress={handleSubmit} />
+      {/* <Button title="Submit" onPress={handleSubmit} /> */}
+      <PrimaryButton title={t('Login')} onPress={handleSubmit} />
     </View>
   );
 };
