@@ -1,63 +1,97 @@
 import React, {useState} from 'react';
-import {View, Button} from 'react-native';
-import TextInput from '../../atoms/TextInput/TextInput';
+import {View, Button, Alert} from 'react-native';
+import TextInput from '../../atoms/Input/Input';
 import styles from './styles';
+import {useTranslation} from 'react-i18next';
+import Input from '../../atoms/Input/Input';
 
 const Form: React.FC = () => {
-  const [name, setName] = useState('');
+  const {t} = useTranslation();
+
+  const [password, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [nameError, setNameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+  const passwordRegex =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+  const emailRegex = /\S+@\S+\.\S+/;
+
+  const managePasswordVisibility = () => {
+    Alert.alert('', '1');
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+  const validateEmail = (email, setError) => {
+    if (!email) {
+      setEmailError(t('emptyEmail'));
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      setEmailError(t('validEmail'));
+      return false;
+    }
+    setEmailError('');
+    return true;
+  };
+
+  const validatePassword = (password, setError, type) => {
+    if (!password) {
+      setPasswordError(
+        type === 'confirmPassword' ? t('emptyConformPass') : t('emptyPass'),
+      );
+      return false;
+    }
+
+    if (!passwordRegex.test(password)) {
+      setPasswordError(t('strongPass'));
+      return false;
+    }
+    setPasswordError('');
+    return true;
+  };
 
   const handleSubmit = () => {
-    let valid = true;
+    const isValidMail = validateEmail(email, setEmailError);
+    const isValidPass = validatePassword(password, setPasswordError, null);
 
-    if (name.trim() === '') {
-      setNameError('Name is required');
-      valid = false;
-    } else {
-      setNameError('');
-    }
-
-    if (email.trim() === '') {
-      setEmailError('Email is required');
-      valid = false;
-    } else {
-      setEmailError('');
-    }
-
-    if (valid) {
-      // Handle form submission
-      console.log({name, email});
+    if (isValidMail && isValidPass) {
+      Alert.alert('', 'Login done');
     }
   };
 
   return (
     <View style={styles.container}>
-      <TextInput
-        label="Name"
-        value={name}
-        onChangeText={text => {
-          setName(text);
-          if (nameError) {
-            setNameError('');
-          }
-        }}
-        errorMessage={nameError}
-        onFocus={() => setNameError('')}
-      />
-      <TextInput
-        label="Email"
+      <Input
         value={email}
+        placeholder={t('emailPlaceHolder')}
         onChangeText={text => {
           setEmail(text);
           if (emailError) {
             setEmailError('');
           }
         }}
-        errorMessage={emailError}
+        fieldError={emailError}
         onFocus={() => setEmailError('')}
         keyboardType="email-address"
+      />
+      <Input
+        value={password}
+        placeholder={t('passwordPlaceHolder')}
+        secureTextEntry={secureTextEntry}
+        onChangeText={text => {
+          setName(text);
+          if (passwordError) {
+            setPasswordError('');
+          }
+        }}
+        showText={true}
+        showTextOnPress={managePasswordVisibility}
+        fieldError={passwordError}
+        onFocus={() => setPasswordError('')}
       />
       <Button title="Submit" onPress={handleSubmit} />
     </View>

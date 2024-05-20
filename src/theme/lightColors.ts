@@ -11,6 +11,10 @@ const lightColors = {
   info: '#1C3AA7',
   white: '#FFFFFF',
   text: '#161D1D',
+  textInputBackground: 'rgba(246, 246, 246, 1)',
+  textInputBorder: 'rgba(232, 232, 232, 1)',
+  placeHolderColor: 'rgba(189, 189, 189, 1)',
+  greenPrimary: 'rgba(65, 149, 105, 1)',
 };
 
 export const lightLinear = [
