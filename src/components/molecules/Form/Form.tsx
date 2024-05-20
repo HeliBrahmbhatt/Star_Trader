@@ -20,7 +20,6 @@ const Form: React.FC = () => {
   const emailRegex = /\S+@\S+\.\S+/;
 
   const managePasswordVisibility = () => {
-    Alert.alert('', '1');
     setSecureTextEntry(!secureTextEntry);
   };
 
