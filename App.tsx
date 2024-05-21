@@ -1,6 +1,5 @@
-import {View, Text, StatusBar, SafeAreaView} from 'react-native';
+import {StatusBar} from 'react-native';
 import React, {useState} from 'react';
-import RootNavigator from './src/navigators/RootNavigator';
 import {PaperProvider} from 'react-native-paper';
 import {DarkTheme, LightTheme} from './src/theme';
 import {NavigationContainer} from '@react-navigation/native';

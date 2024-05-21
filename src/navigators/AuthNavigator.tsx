@@ -1,17 +1,16 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import TabBar from '../components/atoms/TabBar/TabBar';
 import {AuthNavigatorParamsList} from './types';
-import {SignUp, Login} from './root';
 
-const Stack = createNativeStackNavigator<AuthNavigatorParamsList>();
+const Auth = createNativeStackNavigator<AuthNavigatorParamsList>();
 export default function AuthNavigator() {
   return (
-    <Stack.Navigator
+    <Auth.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name={'SignUp'} component={SignUp} />
-      <Stack.Screen name={'Login'} component={Login} />
-    </Stack.Navigator>
+      <Auth.Screen name={'TabBar'} component={TabBar} />
+    </Auth.Navigator>
   );
 }

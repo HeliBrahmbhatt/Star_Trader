@@ -13,6 +13,5 @@ export type TabNavigatorParamsList = {
 };
 
 export type AuthNavigatorParamsList = {
-  SignUp: undefined;
-  Login: undefined;
+  TabBar: undefined;
 };

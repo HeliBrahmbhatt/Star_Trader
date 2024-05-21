@@ -5,9 +5,11 @@
   "passwordPlaceHolder":"Password",
   "show":"Show",
   "forgotPassword":"Forgot your password?",
-  "signUp":"Sign Up",
+  "signUp":"SIGN UP",
+  "loginCap":"LOG IN",
   "name":"Name",
   "acceptCondition":"I would like to receive your newsletter and other promotional information.",
+
   
   
 
