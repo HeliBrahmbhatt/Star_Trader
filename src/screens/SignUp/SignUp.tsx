@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Button} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation, useTheme} from '@react-navigation/native';
@@ -27,14 +27,6 @@ const SignUp = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Text>SignUp</Text>
-      <Button
-        title="Login"
-        onPress={() => {
-          navigation.navigate('Login');
-        }}
-      />
-
       <View style={styles.container}>
         <Table borderStyle={{}}>
           <Row data={tableHead} style={styles.head} textStyle={styles.text} />
