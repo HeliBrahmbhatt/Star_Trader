@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {useTheme} from 'react-native-paper';
 import makeStyle from './styles';
+import makeGlobalStyleSheet from '../../../utils/globalStyle';
 
 interface PrimaryButtonProps extends TouchableOpacityProps {
   title: string;
@@ -26,10 +27,10 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
   const theme = useTheme();
   const styles = makeStyle(theme);
-
+  const globalStyle = makeGlobalStyleSheet(theme);
   return (
     <TouchableOpacity
-      style={[styles.button, buttonStyle]}
+      style={[globalStyle.button, buttonStyle]}
       onPress={onPress}
       {...rest}>
       <Text style={[styles.text, textStyle]}>{title}</Text>

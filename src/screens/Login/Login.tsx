@@ -12,7 +12,7 @@ const Login = () => {
   const globalStyle = makeGlobalStyleSheet(theme);
   return (
     <SafeAreaView style={globalStyle.container}>
-      <View>
+      <View style={{flex: 1}}>
         <Form />
       </View>
     </SafeAreaView>

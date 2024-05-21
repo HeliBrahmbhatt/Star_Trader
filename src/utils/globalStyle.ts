@@ -6,6 +6,14 @@ const makeGlobalStyleSheet = theme =>
       flex: 1,
       backgroundColor: theme.colors.white,
     },
+    button: {
+      backgroundColor: theme.colors.greenPrimary,
+      paddingVertical: 15,
+      paddingHorizontal: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 40,
+    },
   });
 
 export default makeGlobalStyleSheet;

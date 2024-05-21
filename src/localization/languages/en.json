@@ -9,12 +9,14 @@
   "name":"Name",
   "acceptCondition":"I would like to receive your newsletter and other promotional information.",
   
+  
 
 
   "emptyConformPass": "Confirm Password can not be empty",
   "emptyPass": "Password can not be empty",
   "emptyEmail": "Please enter email address",
   "validEmail": "Please enter a valid email address",
+  "validName":"Please enter name",
   "strongPass": "Password must be 8+ characters with an uppercase, number, and special character.",
   "next": "Next",
   "clear": "Clear",
