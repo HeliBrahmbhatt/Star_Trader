@@ -5,6 +5,7 @@ import {DatabaseContext} from '../../services/DatabaseContext';
 
 const Home = () => {
   const {data, loading, error} = useContext(DatabaseContext);
+  // console.log('data ======>', data?.item(1));
 
   return (
     <SafeAreaView>
