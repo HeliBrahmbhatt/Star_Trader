@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react';
 import {openDatabase} from 'react-native-sqlite-storage';
-import RNFS from 'react-native-fs';
+import json from '../../../assets/NFLPlayerValueCalcs.json';
 
 interface DatabaseState {
   data: DatabaseRow[];
@@ -25,6 +25,7 @@ const DatabaseProvider = ({children}) => {
     insertData();
     getData();
   }, []);
+
   const createTable = () => {
     db.transaction(txn => {
       txn.executeSql(
@@ -62,13 +63,14 @@ const DatabaseProvider = ({children}) => {
   };
 
   const insertData = async () => {
-    const filePath =
-      // RNFS.DocumentDirectoryPath + '/NFLPlayerValueCalcs.json'; // Adjust the path as needed
-      '/Users/apple/Heli/indianic/Demo/SQLiteJson/NFLPlayerValueCalcs.json';
-    const result = await RNFS.readFile(filePath, 'utf8');
-    const jsonData = JSON.parse(result);
+    // const filePath =
+    //   // RNFS.DocumentDirectoryPath + '/NFLPlayerValueCalcs.json'; // Adjust the path as needed
+    //   '/Users/apple/Heli/indianic/Demo/SQLiteJson/NFLPlayerValueCalcs.json';
+    // const result = await RNFS.readFile(filePath, 'utf8');
+    // const jsonData = JSON.parse(result);
+
     db.transaction(tx => {
-      jsonData.forEach(player => {
+      json.forEach(player => {
         tx.executeSql(
           `INSERT INTO NFLPlayerValueCalcs (
           ID, Name, Team, Position, Age, YrCalc, ExpectedWeekFantasyPoints, ExpectedSeasonFantasyPoints, MktCAP, McapSize, SharesOutstanding, BuyoutPrice, SharePriceInStarCoins, TodaysHigh, TodaysLow, PERatio, Volume, AVGVolume, WeekHigh52, WeekLow52
