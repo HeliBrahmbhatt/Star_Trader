@@ -1,14 +1,18 @@
 import {View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {Table, Row, Rows} from 'react-native-table-component';
 import makeStyle from './styles';
+import {PrimaryButton} from '../../components/atoms/PrimaryButton/PrimaryButton';
+import {DatabaseContext} from '../../services/Database/DatabaseContext';
 
 const SignUp = () => {
   const theme = useTheme();
   const styles = makeStyle(theme);
   const navigation = useNavigation();
+  const {data} = useContext(DatabaseContext);
+  // console.log('data =====>', data);
 
   const tableHead = [
     'Exchange',
