@@ -122,21 +122,21 @@ const DatabaseProvider = ({children}) => {
         );
       });
     });
-    db.transaction(tx => {
-      tx.executeSql(
-        // `INSERT INTO User(
-        //   ID, Name,
-        // ) VALUES (?,?)`,
+    // db.transaction(tx => {
+    //   tx.executeSql(
+    //     // `INSERT INTO User(
+    //     //   ID, Name,
+    //     // ) VALUES (?,?)`,
 
-        `INSERT INTO User(ID, Name) VALUES (?,?)`[(3, 'Heli')],
-        (tx, results) => {
-          console.log('Inserted row : ');
-        },
-        error => {
-          console.log('Error on inserting row: ' + error.message);
-        },
-      );
-    });
+    //     `INSERT INTO User(ID, Name) VALUES (?,?)`[(3, 'Heli')],
+    //     (tx, results) => {
+    //       console.log('Inserted row : ');
+    //     },
+    //     error => {
+    //       console.log('Error on inserting row: ' + error.message);
+    //     },
+    //   );
+    // });
   };
   const getData = () => {
     db.transaction(tx => {
@@ -147,16 +147,16 @@ const DatabaseProvider = ({children}) => {
           NFLPlayerValueCalcs.push(rows.item(i));
         }
         setData(NFLPlayerValueCalcs);
-        exportDatabase();
+        // exportDatabase();
         return NFLPlayerValueCalcs;
       });
     });
-    db.transaction(tx => {
-      tx.executeSql('SELECT * FROM User', [], (tx, results) => {
-        const rows = results.rows;
-        console.log('USER =========>', rows);
-      });
-    });
+    // db.transaction(tx => {
+    //   tx.executeSql('SELECT * FROM User', [], (tx, results) => {
+    //     const rows = results.rows;
+    //     console.log('USER =========>', rows);
+    //   });
+    // });
   };
 
   const getDatabasePath = () => {
@@ -179,7 +179,7 @@ const DatabaseProvider = ({children}) => {
     console.log(`Database exists at path: ${dbFilePath} ? ${fileExists}`);
   };
 
-  checkDatabaseExists();
+  // checkDatabaseExists();
 
   const exportDatabase = async () => {
     const dbFilePath = getDatabasePath();
