@@ -1,6 +1,8 @@
 import React, {createContext, useState, useEffect} from 'react';
 import {openDatabase} from 'react-native-sqlite-storage';
 import json from '../../../assets/NFLPlayerValueCalcs.json';
+import RNFS from 'react-native-fs';
+import {Alert, Platform} from 'react-native';
 
 interface DatabaseState {
   data: DatabaseRow[];
@@ -18,7 +20,7 @@ const DatabaseContext = createContext<DatabaseState>({
 
 const DatabaseProvider = ({children}) => {
   const [data, setData] = useState<DatabaseRow[]>([]);
-  const db = openDatabase({name: 'StarTrader.db'});
+  let db = openDatabase({name: 'StarTrader.db', location: 'default'});
 
   useEffect(() => {
     createTable();
@@ -30,27 +32,41 @@ const DatabaseProvider = ({children}) => {
     db.transaction(txn => {
       txn.executeSql(
         `CREATE TABLE IF NOT EXISTS NFLPlayerValueCalcs (
-        ID INTEGER PRIMARY KEY,
-        Name TEXT,
-        Team TEXT,
-        Position TEXT,
-        Age TEXT,
-        YrCalc TEXT,
-        ExpectedWeekFantasyPoints REAL,
-        ExpectedSeasonFantasyPoints REAL,
-        MktCAP TEXT,
-        McapSize TEXT,
-        SharesOutstanding TEXT,
-        BuyoutPrice REAL,
-        SharePriceInStarCoins REAL,
-        TodaysHigh REAL,
-        TodaysLow REAL,
-        PERatio TEXT,
-        Volume TEXT,
-        AVGVolume TEXT,
-        WeekHigh52 REAL,
-        WeekLow52 REAL
-      );`,
+          ID INTEGER PRIMARY KEY,
+          Name TEXT,
+          Team TEXT,
+          Position TEXT,
+          Age TEXT,
+          YrCalc TEXT,
+          ExpectedWeekFantasyPoints REAL,
+          ExpectedSeasonFantasyPoints REAL,
+          MktCAP TEXT,
+          McapSize TEXT,
+          SharesOutstanding TEXT,
+          BuyoutPrice REAL,
+          SharePriceInStarCoins REAL,
+          TodaysHigh REAL,
+          TodaysLow REAL,
+          PERatio TEXT,
+          Volume TEXT,
+          AVGVolume TEXT,
+          WeekHigh52 REAL,
+          WeekLow52 REAL
+        );`, // Add comma here
+        [],
+        (tx, res) => {
+          console.log('Table created successfully');
+        },
+        error => {
+          console.log('Error on creating table: ' + error.message);
+        },
+      );
+
+      txn.executeSql(
+        `CREATE TABLE IF NOT EXISTS User (
+           ID PRIMARY KEY,
+          Name TEXT
+        );`,
         [],
         (tx, res) => {
           console.log('Table created successfully');
@@ -106,6 +122,21 @@ const DatabaseProvider = ({children}) => {
         );
       });
     });
+    db.transaction(tx => {
+      tx.executeSql(
+        // `INSERT INTO User(
+        //   ID, Name,
+        // ) VALUES (?,?)`,
+
+        `INSERT INTO User(ID, Name) VALUES (?,?)`[(3, 'Heli')],
+        (tx, results) => {
+          console.log('Inserted row : ');
+        },
+        error => {
+          console.log('Error on inserting row: ' + error.message);
+        },
+      );
+    });
   };
   const getData = () => {
     db.transaction(tx => {
@@ -116,9 +147,118 @@ const DatabaseProvider = ({children}) => {
           NFLPlayerValueCalcs.push(rows.item(i));
         }
         setData(NFLPlayerValueCalcs);
+        exportDatabase();
         return NFLPlayerValueCalcs;
       });
     });
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM User', [], (tx, results) => {
+        const rows = results.rows;
+        console.log('USER =========>', rows);
+      });
+    });
+  };
+
+  const getDatabasePath = () => {
+    if (Platform.OS === 'android') {
+      console.log(
+        'RNFS.DocumentDirectoryPath ====>',
+        RNFS.DocumentDirectoryPath,
+      );
+
+      return `/data/user/0/com.startrader/databases/StarTrader.db`;
+    } else if (Platform.OS === 'ios') {
+      return `${RNFS.LibraryDirectoryPath}/LocalDatabase/StarTrader.db`;
+    }
+    return '';
+  };
+
+  const checkDatabaseExists = async () => {
+    const dbFilePath = getDatabasePath();
+    const fileExists = await RNFS.exists(dbFilePath);
+    console.log(`Database exists at path: ${dbFilePath} ? ${fileExists}`);
+  };
+
+  checkDatabaseExists();
+
+  const exportDatabase = async () => {
+    const dbFilePath = getDatabasePath();
+    console.log('dbFilePath =====>', dbFilePath);
+
+    // const exportFilePath = `${RNFS.ExternalDirectoryPath}/StarTrader.db`;
+    // const destPath = `${RNFS.DownloadDirectoryPath}/StarTrader.db`;
+    const destPath =
+      Platform.OS === 'ios'
+        ? `${RNFS.DocumentDirectoryPath}/StarTrader.db`
+        : `${RNFS.DownloadDirectoryPath}/StarTrader.db`;
+
+    try {
+      // Check if the file exists
+      const fileExists = await RNFS.exists(dbFilePath);
+      if (!fileExists) {
+        throw new Error(`Database file does not exist at path: ${dbFilePath}`);
+      }
+
+      // Copy the database file to an external directory
+      await RNFS.copyFile(dbFilePath, destPath);
+
+      // Share the file
+      const options = {
+        type: 'application/octet-stream',
+        url: `file://${destPath}`,
+        title: 'StarTrader.db',
+      };
+
+      // await Share.open(options);
+      Alert.alert('Success', 'Database file exported successfully');
+      // fetchDB();
+    } catch (error) {
+      Alert.alert(
+        'Error 1',
+        `Failed to export database file: ${error.message}`,
+      );
+      console.error(error);
+    }
+  };
+
+  const fetchDB = async () => {
+    // const destPath = `${RNFS.DocumentDirectoryPath}/StarTrader.db`;
+    // const destPath =
+    //   Platform.OS === 'ios'
+    //     ? `/Users/apple/Library/Developer/CoreSimulator/Devices/2B25D8FA-D9D0-4E54-B776-EA8C122E3E57/data/Containers/Data/Application/D17B3CC6-6097-44B1-825D-93BF964B2C93/Library/LocalDatabase/StarTrader.db`
+    //     : `/data/user/0/com.startrader/databases/StarTrader.db`;
+    const destPath = getDatabasePath();
+    try {
+      // Ensure the file exists
+      const fileExists = await RNFS.exists(destPath);
+      if (!fileExists) {
+        Alert.alert('Error', 'Database file not found 1');
+        return;
+      } else {
+        db = openDatabase({name: destPath, location: 'default'});
+        getData();
+
+        Alert.alert('Error 1', 'Database file found 1');
+      }
+
+      // Open the database
+      // const db = await SQLite.openDatabase({
+      //   name: 'StarTrader.db',
+      //   location: 'default',
+      //   createFromLocation: destPath,
+      // });
+
+      // // Query the database
+      // db.transaction(tx => {
+      //   tx.executeSql('SELECT * FROM your_table_name', [], (tx, results) => {
+      //     const rows = results.rows.raw(); // Use .raw() to get a plain array
+      //     console.log(rows); // Handle your data as needed
+      //   });
+      // });
+    } catch (error) {
+      console.error('Error fetching database file:', error);
+      Alert.alert('Error', `Failed to fetch database file: ${error.message}`);
+    }
   };
   const fetchData = async (sql: string): Promise<DatabaseRow[]> => {
     return new Promise((resolve, reject) => {
