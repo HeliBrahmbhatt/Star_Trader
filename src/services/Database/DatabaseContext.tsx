@@ -1,6 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react';
 import {openDatabase} from 'react-native-sqlite-storage';
-import json from 'assets/NFLPlayerValueCalcs.json';
+import json from '../../../assets/NFLPlayerValueCalcs.json';
 import RNFS from 'react-native-fs';
 import {Alert, Platform} from 'react-native';
 
