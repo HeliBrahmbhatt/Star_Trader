@@ -1,6 +1,8 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import TabBar from '../components/atoms/TabBar/TabBar';
+
+import TabBar from '@src/components/atoms/TabBar/TabBar';
+
 import {AuthNavigatorParamsList} from './types';
 
 const Auth = createNativeStackNavigator<AuthNavigatorParamsList>();

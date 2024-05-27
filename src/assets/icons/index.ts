@@ -9,4 +9,6 @@ export const defaultIcon = {
   ['activeResearch']: require('./resources/activeResearch.png'),
   ['activeProfile']: require('./resources/activeProfile.png'),
   ['activeWallet']: require('./resources/activeWallet.png'),
+  ['backImage']: require('./resources/backImage.png'),
+  ['trade']: require('./resources/trade.png'),
 };

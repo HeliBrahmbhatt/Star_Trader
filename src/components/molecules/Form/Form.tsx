@@ -6,13 +6,14 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
-import TextInput from '../../atoms/Input/Input';
-import styles from './styles';
-import {useTranslation} from 'react-i18next';
-import Input from '../../atoms/Input/Input';
-import {PrimaryButton} from '../../atoms/PrimaryButton/PrimaryButton';
-import makeGlobalStyleSheet from '../../../utils/globalStyle';
 import {useTheme} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
+
+import {PrimaryButton} from '@src/components/atoms/PrimaryButton/PrimaryButton';
+import Input from '@src/components/atoms/Input/Input';
+import makeGlobalStyleSheet from '@src/utils/globalStyle';
+
+import styles from './styles';
 
 const Form: React.FC = () => {
   const {t} = useTranslation();

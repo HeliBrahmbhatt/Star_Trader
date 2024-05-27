@@ -7,8 +7,10 @@ import {
   ImageSourcePropType,
 } from 'react-native';
 import React from 'react';
+
+import {defaultIcon} from '@src/assets/icons';
+
 import IconStyleCreater from './styles';
-import {defaultIcon} from '../../../../assets/icons';
 
 interface TabIconProps {
   sizes?: {

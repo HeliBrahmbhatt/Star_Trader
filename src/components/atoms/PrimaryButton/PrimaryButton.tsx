@@ -8,8 +8,10 @@ import {
   TextStyle,
 } from 'react-native';
 import {useTheme} from 'react-native-paper';
+
+import makeGlobalStyleSheet from '@src/utils/globalStyle';
+
 import makeStyle from './styles';
-import makeGlobalStyleSheet from '../../../utils/globalStyle';
 
 interface PrimaryButtonProps extends TouchableOpacityProps {
   title: string;

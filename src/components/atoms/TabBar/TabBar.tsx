@@ -2,7 +2,9 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {Login, SignUp} from '../../../navigators/root';
+
+import {Login, SignUp} from '@src/navigators/root';
+
 import makeStyle from './styles';
 
 const TabBar = () => {
@@ -29,6 +31,7 @@ const TabBar = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <Tab.Navigator
+        // initialRouteName="Log In"
         screenOptions={{
           tabBarActiveTintColor: theme.colors.primary,
           tabBarIndicatorStyle: {backgroundColor: theme.colors.primary},

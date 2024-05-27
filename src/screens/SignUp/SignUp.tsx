@@ -3,8 +3,10 @@ import React, {useContext, useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {Table, Row, Rows} from 'react-native-table-component';
+
+import {DatabaseContext} from '@src/services/Database/DatabaseContext';
+
 import makeStyle from './styles';
-import {DatabaseContext} from '../../services/Database/DatabaseContext';
 
 const SignUp = () => {
   const theme = useTheme();

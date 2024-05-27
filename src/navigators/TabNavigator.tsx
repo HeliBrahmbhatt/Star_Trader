@@ -1,12 +1,14 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {Home, Wallet, Trades, Research, Profile} from './root';
-import {TabNavigatorParamsList} from './types';
-import {defaultIcon} from '../assets/icons';
-import styles from './styles';
-import TabIcon from '../components/atoms/Icon/TabIcon/TabIcon';
 import {Dimensions} from 'react-native';
 import {useTheme} from 'react-native-paper';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import TabIcon from '@src/components/atoms/Icon/TabIcon/TabIcon';
+import {defaultIcon} from '@src/assets/icons';
+
+import {TabNavigatorParamsList} from './types';
+import {Home, Wallet, Trades, Research, Profile} from './root';
+import styles from './styles';
 
 const Tab = createBottomTabNavigator<TabNavigatorParamsList>();
 export default function TabNavigator() {
@@ -61,7 +63,7 @@ export default function TabNavigator() {
         options={{
           tabBarIcon: ({focused, color, size}) => (
             <TabIcon
-              source={defaultIcon.starTrade}
+              source={defaultIcon.trade}
               styles={[
                 styles.iconStyle,
                 {
