@@ -1,4 +1,5 @@
 export const defaultIcon = {
+  ['appLogo']: require('./resources/appLogo.png'),
   ['home']: require('./resources/home.png'),
   ['research']: require('./resources/research.png'),
   ['profile']: require('./resources/profile.png'),
