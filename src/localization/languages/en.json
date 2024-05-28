@@ -1,5 +1,6 @@
 {
   "appName": "Star Trader",
+  "starTrader": "StarTrader",
   "Login":"Log In",
   "emailPlaceHolder": "Email",
   "passwordPlaceHolder":"Password",

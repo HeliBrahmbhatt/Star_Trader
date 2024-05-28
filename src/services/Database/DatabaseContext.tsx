@@ -213,10 +213,10 @@ const DatabaseProvider = ({children}) => {
       Alert.alert('Success', 'Database file exported successfully');
       // fetchDB();
     } catch (error) {
-      Alert.alert(
-        'Error 1',
-        `Failed to export database file: ${error.message}`,
-      );
+      // Alert.alert(
+      //   'Error 1',
+      //   `Failed to export database file: ${error.message}`,
+      // );
       console.error(error);
     }
   };
