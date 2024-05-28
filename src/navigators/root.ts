@@ -1,6 +1,7 @@
 //Auth Navigator Screens
 import SignUp from '../screens/SignUp/SignUp';
 import Login from '../screens/Login/Login';
+import OnBoarding from '../screens/OnBoarding/OnBoarding';
 
 //Root Navigator Screens
 import Home from '../screens/Home/Home';

@@ -14,4 +14,5 @@ export type TabNavigatorParamsList = {
 
 export type AuthNavigatorParamsList = {
   TabBar: undefined;
+  OnBoarding: undefined;
 };

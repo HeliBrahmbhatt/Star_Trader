@@ -154,17 +154,17 @@ const DatabaseProvider = ({children}) => {
     db.transaction(tx => {
       tx.executeSql('SELECT * FROM User', [], (tx, results) => {
         const rows = results.rows;
-        console.log('USER =========>', rows);
+        // console.log('USER =========>', rows);
       });
     });
   };
 
   const getDatabasePath = () => {
     if (Platform.OS === 'android') {
-      console.log(
-        'RNFS.DocumentDirectoryPath ====>',
-        RNFS.DocumentDirectoryPath,
-      );
+      // console.log(
+      //   'RNFS.DocumentDirectoryPath ====>',
+      //   RNFS.DocumentDirectoryPath,
+      // );
 
       return `/data/user/0/com.startrader/databases/StarTrader.db`;
     } else if (Platform.OS === 'ios') {
@@ -176,14 +176,14 @@ const DatabaseProvider = ({children}) => {
   const checkDatabaseExists = async () => {
     const dbFilePath = getDatabasePath();
     const fileExists = await RNFS.exists(dbFilePath);
-    console.log(`Database exists at path: ${dbFilePath} ? ${fileExists}`);
+    // console.log(`Database exists at path: ${dbFilePath} ? ${fileExists}`);
   };
 
   checkDatabaseExists();
 
   const exportDatabase = async () => {
     const dbFilePath = getDatabasePath();
-    console.log('dbFilePath =====>', dbFilePath);
+    // console.log('dbFilePath =====>', dbFilePath);
 
     // const exportFilePath = `${RNFS.ExternalDirectoryPath}/StarTrader.db`;
     // const destPath = `${RNFS.DownloadDirectoryPath}/StarTrader.db`;
@@ -210,14 +210,14 @@ const DatabaseProvider = ({children}) => {
       };
 
       // await Share.open(options);
-      Alert.alert('Success', 'Database file exported successfully');
+      // Alert.alert('Success', 'Database file exported successfully');
       // fetchDB();
     } catch (error) {
-      Alert.alert(
-        'Error 1',
-        `Failed to export database file: ${error.message}`,
-      );
-      console.error(error);
+      // Alert.alert(
+      //   'Error 1',
+      //   `Failed to export database file: ${error.message}`,
+      // );
+      // console.error(error);
     }
   };
 
@@ -232,13 +232,13 @@ const DatabaseProvider = ({children}) => {
       // Ensure the file exists
       const fileExists = await RNFS.exists(destPath);
       if (!fileExists) {
-        Alert.alert('Error', 'Database file not found 1');
+        // Alert.alert('Error', 'Database file not found 1');
         return;
       } else {
         db = openDatabase({name: destPath, location: 'default'});
         getData();
 
-        Alert.alert('Error 1', 'Database file found 1');
+        // Alert.alert('Error 1', 'Database file found 1');
       }
 
       // Open the database
@@ -256,8 +256,8 @@ const DatabaseProvider = ({children}) => {
       //   });
       // });
     } catch (error) {
-      console.error('Error fetching database file:', error);
-      Alert.alert('Error', `Failed to fetch database file: ${error.message}`);
+      // console.error('Error fetching database file:', error);
+      // Alert.alert('Error', `Failed to fetch database file: ${error.message}`);
     }
   };
   const fetchData = async (sql: string): Promise<DatabaseRow[]> => {

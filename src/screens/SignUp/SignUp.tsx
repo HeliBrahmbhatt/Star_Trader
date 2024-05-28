@@ -1,10 +1,9 @@
-import {ScrollView, View} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation, useTheme} from '@react-navigation/native';
-import {Table, Row, Rows} from 'react-native-table-component';
 import makeStyle from './styles';
 import {DatabaseContext} from '../../services/Database/DatabaseContext';
+import {PrimaryButton} from '../../components/atoms/PrimaryButton/PrimaryButton';
 
 const SignUp = () => {
   const theme = useTheme();
@@ -28,7 +27,13 @@ const SignUp = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView horizontal>
+      <PrimaryButton
+        title="OnBoarding"
+        onPress={() => {
+          navigation.navigate('OnBoarding');
+        }}
+      />
+      {/* <ScrollView horizontal>
         <View style={styles.container}>
           <ScrollView>
             <Table borderStyle={{borderWidth: 1}}>
@@ -41,7 +46,7 @@ const SignUp = () => {
             </Table>
           </ScrollView>
         </View>
-      </ScrollView>
+      </ScrollView> */}
     </SafeAreaView>
   );
 };

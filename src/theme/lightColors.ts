@@ -15,6 +15,7 @@ const lightColors = {
   textInputBorder: 'rgba(232, 232, 232, 1)',
   placeHolderColor: 'rgba(189, 189, 189, 1)',
   greenPrimary: 'rgba(65, 149, 105, 1)',
+  whiteOpacity40: 'rgba(255, 255, 255, 0.4)',
 };
 
 export const lightLinear = [

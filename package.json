@@ -22,6 +22,7 @@
     "react": "18.2.0",
     "react-i18next": "^14.1.1",
     "react-native": "0.74.1",
+    "react-native-app-intro-slider": "^4.0.4",
     "react-native-fs": "^2.20.0",
     "react-native-localize": "^3.1.0",
     "react-native-pager-view": "^6.3.1",
