@@ -10,14 +10,28 @@ import AuthNavigator from '@src/navigators/AuthNavigator';
 import {DatabaseProvider} from '@src/services/Database/DatabaseContext';
 import {DarkTheme, LightTheme} from '@src/theme';
 import {i18n} from '@src/localization/i18n';
+import Splash from '@src/screens/Splash/Splash';
 
 export default function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const theme = isDarkTheme ? DarkTheme : LightTheme;
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
 
   useEffect(() => {
+    // Hide the native splash screen
     SplashScreen.hide();
+
+    // Set a timeout to hide the custom splash screen after a certain duration
+    const splashTimeout = setTimeout(() => {
+      setIsSplashVisible(false);
+    }, 3000); // Adjust the duration as needed
+
+    return () => clearTimeout(splashTimeout);
   }, []);
+
+  if (isSplashVisible) {
+    return <Splash />;
+  }
   return (
     <I18nextProvider i18n={i18n} defaultNS={'translation'}>
       <PaperProvider theme={theme}>
@@ -28,8 +42,8 @@ export default function App() {
               backgroundColor={isDarkTheme ? 'black' : 'transparent'}
               barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
             />
-            {/* <AuthNavigator /> */}
             <RootNavigator />
+            {/* <AuthNavigator /> */}
           </NavigationContainer>
         </DatabaseProvider>
       </PaperProvider>
